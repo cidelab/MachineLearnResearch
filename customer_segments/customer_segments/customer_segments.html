@@ -12133,7 +12133,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="analysis.png" alt="analysis" style="width: 500px;float:left;"/></p>
+<p><img src="attachment:analysis.png" alt="analysis.png"></p>
 
 </div>
 </div>
@@ -12315,10 +12315,15 @@ Delicatessen - R^2: -0.4291251956585451
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong><br>
-I change slightly the code in order to have a broad vision of the data. Initially I selected "Fresh" but the score was negative: -0.92. which means this feature is not able to identify customers habits. The information of this category shows no meaningful relationship between categories. It is not possible to predict "Fresh" values based in the data of other categories.
-As a conclussion I would say the DecisionTreeRegressor is not a good model to predict the "Fresh" category. 
+I change slightly the code in order to have a broad vision of the data. Initially I selected "Fresh" The score is negative: -0.92. The information in this category shows a meaningless relationship between other categories. Therfore It is not possible to predict "Fresh" based in the data of other categories.
+<br>
+In the other hand, Detergents_Paper, with  the highest R^2 score is highly correlated because is similar in behavior than other categories, and have a similar impact is redundant. It is possible to conclude it provide less relevant information because doesn't bring new information to the analysis.
 <br><br>
-Detergents_Paper category has a better correlation whit the other catergories when a DecisionTreeRegressor is used as a model.</p>
+References
+<br>
+1 The previous review, 
+<a href="https://docs.rapidminer.com/latest/studio/operators/blending/attributes/selection/remove_correlated_attributes.html">2,</a>
+<a href="https://www.knime.com/blog/seven-techniques-for-data-dimensionality-reduction">3</a></p>
 
 </div>
 </div>
@@ -12454,7 +12459,7 @@ Detergents_Paper category has a better correlation whit the other catergories wh
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong><br>
-The strongest correlations are between "Grocery" and "Detergents_Paper". Which is possible to identify in the heatmap above. Then "Milk" and "Grocery" and finally (above 0.50) "Milk" and "Detergents_Paper" correlations. which is interesting is these 3 categories also shows positive R^2 scores. The heatmap, also shows that neither category is relevant to identify a specific customer.
+The strongest correlations are between "Grocery" and "Detergents_Paper". Which is possible to identify in the heatmap above. Then "Milk" and "Grocery" and finally (above 0.50) "Milk" and "Detergents_Paper" correlations. Fresh and Frozen are the categories with less correlation with other categories.
 <br><br>
 The data is highly positive skewed (long tail to the right), which means median and mean are greated than mode. Also the data is not normally ditributed, because the peak it far away from the center. There is a high concentration of data points close to zero but also some points shows higher values. We could say that there are many outliers.</p>
 
@@ -14657,7 +14662,7 @@ Cluster_7 silhouette score: 0.3241770236290148</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="question8.jpg" alt="analysis" style="width: 500px;float:left;"/></p>
+<p><img src="attachment:question8.jpg" alt="question8.jpg"></p>
 
 </div>
 </div>
@@ -14668,7 +14673,9 @@ Cluster_7 silhouette score: 0.3241770236290148</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
 <br>
-<strong>Cluster 0</strong> performs similar than sample 109 but with a smaller amount in grocery. it could be discribed as a local supermarket. In the other hand <strong>Cluster 1</strong>  could be a local shop/convenience store with a dedicate area to fresh products.</p>
+<strong>Segment 0</strong> (Blue curve) It is similar to sample 109, but with a smaller grocery purchaise. The "Fresh" and "Frozen" Categories are below than the mean (yellow curve) values. In the other hand "Milk", "Grocery" and "Detergents_Paper" are higher than the mean of associated categories. Delicatessen is just below than the mean. The segment 0 it is clearly in the left side in the Cluster Graphic. Segment 0 could be discribed as a local supermarket.
+<br><br>
+<strong>Segment 1</strong> (Green curve) Shows values below than mean in each category. "Fresh", "Frozen" and "Delicatessen" are the closest categories to the correspond means (yellow curve). Segment 1 is in the right side in the Cluster Graphic. Since "Delicatessen" has the smallest distance to the correspond mean, Segment 1 could be could expose a small value in dimension 1. It could be a local fresh food market/convenience store.</p>
 
 </div>
 </div>
@@ -14727,7 +14734,13 @@ Sample point 2 predicted to be in Cluster 1
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
 <br>
-for sample point 0 (22) the prediction is correct, because it was discribed as a fresh food market (cluster 1). For sample point 1 (109) it also correct because it was discribed as a supermarket and shows big expenses in grocery. (cluster 0). For sample point 2 (439) the prediction its not so clear, because a small amout of expenses is focoused in grecery and milk, nevertheless Detergents_Paper was expected to be higher.</p>
+<strong>Point 0 (sample 22)</strong> The prediction is correct, because it was discribed in question 1: <em>Fresh, Frozen and Delicatessen categories have the higher spending amount, which indicates this costumer demands high quality, and selective products. The combination of these categories suggest a Fresh food Market.</em> It is also aligned with Segment 1 center. In general terms a customer who consume Fresh, Frozen and Delicatessen products. clearly represents segment 1.
+<br><br>
+<strong>Point 1 (sample 109)</strong> This prediction is also correct. It was described: <em>The categories Grocery and Milk are both much higher than mean spending amount. The rest of the categories are below than mean spending amount.</em> It is possible to state safely this description belongs to the left side of the graphic or classified in Cluster 0. Clearly represents segment 0.
+<br><br>
+<strong>Point 2 (sample 439)</strong> This prediction could be considered correct. description in question 1: <em>The spending amount in Fresh, Milk and Grocery categories is similar. Then in the other 3 categories is quite small. Also is necessary consider that each category performs below than the mean curve. An interesting point is this curve imitates the mean curve, but with small values.</em> The description points a common shop, most probably a local supermarket. clearly close to Segment 1 and classified in Cluster 1.
+<br><br>
+All sample points predicted are consistent with the cluster predicted.</p>
 
 </div>
 </div>
@@ -14768,7 +14781,11 @@ for sample point 0 (22) the prediction is correct, because it was discribed as a
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
 <br>
-The GMM clusters will helps the wholesale distributor to understand better each customer segment behaviour. Customers classiffied in cluster 0 will probably less affected by 3 days delivery because these kind of customers needs more Grocery - Milk and Detergents_Paper, which are products that are usually perishable or at least 2-3 weeks available to consume. Customers classfied in cluster 1, in the other hand, will probably more affected by a 3 days delivery service, because the request fresh and freze products. Nevrtheless, these assumptions needs to by confirmed performing a A/B test.</p>
+The A/B test needs to be applyied to both clusters, it is recommended start with the 5% of costumer base and then ramp up to 25% if the customers interact with the web banner. It is also recommended leave the algorithm for 1-2 weeks, because the customers might react with web banner as a new "feature". So they will feel more attracted. We also recommend a chatbot to clarify customers questions, measure the impact of the new service proposal and harvest new information, which might help later on.
+<br><br>
+Customers classified in cluster 0 will be probably less affected by 3 days delivery service. This type of costumer consume Grocery - Milk and Detergents_Paper above mean. These products usually do not required refrigerated compartments to preserve the food or a short period of consume time, like fruits. Therefore it is more likely the customers classified in this cluster might react positively to 3 days week delivery serivice. In the other hand, some these customers might react negatively, due to the need to consider an extra space for storage. Since the delivery is not daily.
+<br>
+Customers classified in cluster 0, Will be affected by 3 days deivery service. Because fresh products are not delivery every day, and it will increase the food waste (Vegetables, Fish, Fruits).</p>
 
 </div>
 </div>
