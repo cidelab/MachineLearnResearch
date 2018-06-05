@@ -9,7 +9,7 @@ class LearningAgent(Agent):
         This is the object you will be modifying. """ 
 
     def __init__(self, env, learning=False, epsilon=1.0, alpha=0.5):
-        super(LearningAgent, self).__init__(env)     # Set the agent in the evironment 
+        super(LearningAgent, self).__init__(env)     # Set the agent in the environment 
         self.planner = RoutePlanner(self.env, self)  # Create a route planner
         self.valid_actions = self.env.valid_actions  # The set of valid actions
 
@@ -103,6 +103,8 @@ class LearningAgent(Agent):
         self.next_waypoint = self.planner.next_waypoint()
         action = None
 
+        action = random.choice(self.valid_actions)
+
         ########### 
         ## TO DO ##
         ###########
@@ -174,14 +176,14 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env)
+    sim = Simulator(env,update_delay=0.01, log_metrics=True)
     
     ##############
     # Run the simulator
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run()
+    sim.run(n_test=10)
 
 
 if __name__ == '__main__':
