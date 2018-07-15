@@ -162,7 +162,6 @@ class LearningAgent(Agent):
 
         return
         
-
 def run():
     """ Driving function for running the simulation. 
         Press ESC to close the simulation, or [SPACE] to pause the simulation. """
