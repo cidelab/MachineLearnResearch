@@ -42,21 +42,22 @@ class LearningAgent(Agent):
         # If 'testing' is True, set epsilon and alpha to 0
         
         #parameters...
-        A1 = 1.00
-        A2 = 0.00
-        B1 = 2.00
-        B2 = 6.00
-        s = self.alpha
+        A1 = 1.009 #1.15
+        A2 = 0.0001
+        B1 = 5.00
+        B2 = 90.00 #50.00
+        s = 0.0001 #0.025
         
         if testing:
             self.epsilon = 0.0
             self.alpha = 0.0
         else:
-            self.t += 1.0;
-            self.epsilon = self.epsilon - 0.05
+            self.t += 1.0
+            #self.epsilon = self.epsilon - 0.05
             #self.epsilon = 1.0 / (self.t**2)
-            #self.epsilon = A1+(A2-A1) / (1+math.exp(math.log(1/s-1) * (B1+B2-2*self.t) / (B2-B1)))
-            
+            #self.epsilon = math.cos(self.alpha * self.t)
+            #self.epsilon = abs(math.cos(self.alpha*self.t))
+            self.epsilon = A1+(A2-A1) / (1+math.exp(math.log(1/s-1) * (B1+B2-2*self.t) / (B2-B1)))
         return None
 
     def build_state(self):
@@ -192,7 +193,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent, learning=True, epsilon=1.0, alpha=0.5)
+    agent = env.create_agent(LearningAgent, learning=True, epsilon=1.0, alpha=0.01)
     
     ##############
     # Follow the driving agent
@@ -214,7 +215,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10, tolerance=0.0001)
+    sim.run(n_test=100, tolerance=0.0001)
 
 
 if __name__ == '__main__':
